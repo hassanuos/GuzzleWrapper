@@ -32,7 +32,7 @@ class GuzzleRequest
 
     public function bodyFormat($format)
     {
-        return tapGuzzle($this, function ($request) use ($format) {
+        return $this->tapGuzzle($this, function ($request) use ($format) {
             $this->bodyFormat = $format;
         });
     }
@@ -49,7 +49,7 @@ class GuzzleRequest
 
     public function withHeaders($headers)
     {
-        return tapGuzzle($this, function ($request) use ($headers) {
+        return $this->tapGuzzle($this, function ($request) use ($headers) {
             return $this->options = array_merge_recursive($this->options, [
                 'headers' => $headers
             ]);
@@ -84,6 +84,14 @@ class GuzzleRequest
         ]);
     }
 
+    public function tapGuzzle($value, $callback)
+    {
+        $callback($value);
+
+        return $value;
+    }
+
+
     public function delete($url, $params = [])
     {
         return $this->send('DELETE', $url, [
@@ -105,7 +113,7 @@ class GuzzleRequest
 
     protected function parseQueryParams($url)
     {
-        return tapGuzzle([], function (&$query) use ($url) {
+        return $this->tapGuzzle([], function (&$query) use ($url) {
             parse_str(parse_url($url, PHP_URL_QUERY), $query);
         });
     }
