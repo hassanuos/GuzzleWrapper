@@ -16,6 +16,10 @@ class GuzzleWrapper
 
     public static function client()
     {
-        return static::$client ?: static::$client = new Client;
+        $pemFilePath = "/cacert.pem";
+        return static::$client ?: static::$client = new Client([
+            'verify' => $pemFilePath,
+            'headers' => ['Authorization' => 'Bearer 35452154542184587455421']
+        ]);
     }
 }
