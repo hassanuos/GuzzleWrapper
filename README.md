@@ -9,7 +9,7 @@ This wrapper is for every framework of php you can use it.
 ```php 
 $response = GuzzleWrapper::get('https://reqres.in/api/users', []);
 $data = $response->json();
-print_r($data);`
+print_r($data);
 ```
 ### POST Request
 
@@ -18,6 +18,6 @@ $response = GuzzleWrapper::get('https://reqres.in/api/users', [
       "name" => "morpheus",
       "job" => "leader"
     ]);
-$data = $response->json();`
+$data = $response->json();
 print_r($data);
 ```
