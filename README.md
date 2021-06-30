@@ -4,14 +4,14 @@ This wrapper is for every framework of php you can use it.
 
 # Usage 
 
-###GET Request
+### GET Request
 
 ```php 
 $response = GuzzleWrapper::get('https://reqres.in/api/users', []);
 $data = $response->json();
 print_r($data);`
 ```
-###POST Request
+### POST Request
 
 ```php
 $response = GuzzleWrapper::get('https://reqres.in/api/users', [
